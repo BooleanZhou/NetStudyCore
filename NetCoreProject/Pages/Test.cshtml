@@ -1,0 +1,25 @@
+﻿@page
+@model NetCoreProject.Pages.TestModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Test</title>
+</head>
+<body>
+    <ul>
+        @foreach (var item in Model.ListResult)
+        {
+            <li>@item</li>
+            <li>
+                <a asp-page="/Index"  asp-route-name="@item">跳转</a>
+            </li>
+        }
+    </ul>
+</body>
+</html>
