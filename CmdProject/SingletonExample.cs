@@ -25,19 +25,11 @@ namespace CmdProject
 
     public class SingletonExample<T> where T : class, new()
     {
-        //public static T Instance { get { return Nested.instance; } }
-
-        //private class Nested
-        //{
-        //    static Nested() { }
-        //    internal static readonly T instance = new T();
-
-        //}
         public static T instance { get; set; }
         private static readonly object locker = new object();
-        public SingletonExample()
+        protected SingletonExample()
         {
-            Console.WriteLine("进入构造函数");
+            Console.WriteLine("进入单例构造函数");
         }
         public static T GetSingleton()
         {

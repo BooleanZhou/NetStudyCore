@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace CmdProject
 {
     /* ==============================================================================
-    * 类名称(Class Name)：                       CommonModel
+    * 类名称(Class Name)：                       TestOpreation
     * 
     * 类描述(Description)：
     * 
     * 创建人(Author)：                           星爵
     *
-    * 创建时间（Create Date）：                  2019/7/23 星期二 11:21:20
+    * 创建时间（Create Date）：                  2019/7/23 星期二 14:53:21
     * 
     * 修改记录（Revision History）： 
     *       R1:
@@ -23,19 +23,13 @@ namespace CmdProject
     *           
     * ==============================================================================*/
 
-    public class CommonModel
+    public class TestOpreation : SingletonExample<TestOpreation>
     {
-        private CommonModel()
+       
+
+        public string GetString(string name)
         {
-            Console.WriteLine("进入通用构造函数CommonModel");
-        }
-        /// <summary>
-        /// 单例模式
-        /// </summary>
-        /// <returns></returns>
-        public static TestOpreation GetModel()
-        {
-            return SingletonExample<TestOpreation>.GetSingleton();
+            return "方法调用结果:" + name;
         }
     }
 }

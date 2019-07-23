@@ -282,35 +282,41 @@ namespace CmdProject
 
             #region 单例调用
 
-            Stopwatch watch = new Stopwatch();
-            watch.Start(); //  开始监视代码运行时间
+            //Stopwatch watch = new Stopwatch();
+            //watch.Start(); //  开始监视代码运行时间
 
-            for (int i = 0; i < 10000; i++)
-            {
-
-
-                //President p = new President();
-                //p.Name = "Hello" + i.ToString() + "\n";
-                //Console.Write(p.Name);
-
-                //Singleton singletonExample = Singleton.GetSingleton();
-                //singletonExample.Name = "飞飞飞飞"+i.ToString() + "\n";
-                //Console.Write(singletonExample.Name);
-
-                President singletonExample = SingletonExample<President>.GetSingleton();
-                President.instance.Name = "HELLOWORLD飞飞飞飞" + i.ToString() + "\n";
-                President.instance.Country = "中国" + i.ToString() + "\n";
-                Console.Write(singletonExample.Name + singletonExample.Country);
+            //for (int i = 0; i < 4; i++)
+            //{
 
 
-            }
-            watch.Stop(); //  停止监视
-            TimeSpan timespan = watch.Elapsed; //  获取当前实例测量得出的总时间
-            Console.WriteLine("时间：" + timespan.TotalSeconds);
+            //    //President p = new President();
+            //    //p.Name = "Hello" + i.ToString() + "\n";
+            //    //Console.Write(p.Name);
 
-            Console.ReadLine();
+            //    //Singleton singletonExample = Singleton.GetSingleton();
+            //    //singletonExample.Name = "飞飞飞飞"+i.ToString() + "\n";
+            //    //Console.Write(singletonExample.Name);
 
+            //    //President singletonExample = SingletonExample<President>.GetSingleton();
+            //    //President.instance.Name = "HELLOWORLD飞飞飞飞" + i.ToString() + "\n";
+            //    //President.instance.Country = "中国" + i.ToString() + "\n";
+            //    //Console.Write(singletonExample.Name + singletonExample.Country);
+
+            //    TestOpreation opreation = CommonModel.GetModel();
+
+
+            //    string result = opreation.GetString("你好世界" + i.ToString());
+            //    Console.WriteLine(result);
+
+
+            //}
+            //watch.Stop(); //  停止监视
+            //TimeSpan timespan = watch.Elapsed; //  获取当前实例测量得出的总时间
+            //Console.WriteLine("时间：" + timespan.TotalSeconds);
             #endregion
+
+       
+            Console.ReadLine();
         }
 
         public static string GetContinueString(string name)

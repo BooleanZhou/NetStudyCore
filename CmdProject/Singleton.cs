@@ -9,7 +9,7 @@ namespace CmdProject
     /* ==============================================================================
     * 类名称(Class Name)：                       Singleton
     * 
-    * 类描述(Description)：
+    * 类描述(Description)：单例模式
     * 
     * 创建人(Author)：                           星爵
     *
@@ -27,11 +27,12 @@ namespace CmdProject
     {
         private static Singleton instance { get; set; }
         private static readonly object locker = new object();
-        private readonly President president = null;
+
 
         public string Name { get; set; }
         private Singleton()
         {
+            
             Console.WriteLine("进入构造函数");
         }
         public static Singleton GetSingleton()

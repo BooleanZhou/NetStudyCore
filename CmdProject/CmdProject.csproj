@@ -49,6 +49,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Singleton.cs" />
     <Compile Include="SingletonExample.cs" />
+    <Compile Include="TestOpreation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
