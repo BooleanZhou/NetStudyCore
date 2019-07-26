@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -297,16 +298,16 @@ namespace CmdProject
             //    //singletonExample.Name = "飞飞飞飞"+i.ToString() + "\n";
             //    //Console.Write(singletonExample.Name);
 
-            //    //President singletonExample = SingletonExample<President>.GetSingleton();
-            //    //President.instance.Name = "HELLOWORLD飞飞飞飞" + i.ToString() + "\n";
-            //    //President.instance.Country = "中国" + i.ToString() + "\n";
-            //    //Console.Write(singletonExample.Name + singletonExample.Country);
+            //President singletonExample = SingletonExample<President>.GetSingleton();
+            //President.instance.Name = "HELLOWORLD飞飞飞飞" + i.ToString() + "\n";
+            //President.instance.Country = "中国" + i.ToString() + "\n";
+            //Console.Write(singletonExample.Name + singletonExample.Country);
 
-            //    TestOpreation opreation = CommonModel.GetModel();
+            //TestOpreation opreation = CommonModel.GetModel();
 
 
-            //    string result = opreation.GetString("你好世界" + i.ToString());
-            //    Console.WriteLine(result);
+            //string result = opreation.GetString("你好世界" + i.ToString());
+            //Console.WriteLine(result);
 
 
             //}
@@ -314,10 +315,144 @@ namespace CmdProject
             //TimeSpan timespan = watch.Elapsed; //  获取当前实例测量得出的总时间
             //Console.WriteLine("时间：" + timespan.TotalSeconds);
             #endregion
+            #region 寻找字符集合差异项
+            ////字符集合差异
+            //List<string> list1 = new List<string>();
+            //List<string> list2 = new List<string>();
+            //for (int i = 0; i < 100000; i++)
+            //{
+            //    list1.Add("a" + i.ToString());
+            //}
 
-       
+
+            //list2.Add("a1");
+            //list2.Add("b1");
+            //list2.Add("d1");
+
+            //List<string> list3 = list2.Except(list1).ToList();
+            //List<string> list4 = list2.Intersect(list1).ToList();
+            //Console.WriteLine("差异项" + JsonConvert.SerializeObject(list3) + "\n相同项：" + JsonConvert.SerializeObject(list4));
+
+
+            #endregion
+
+            #region 集合序列差异项搜索
+
+            //Stopwatch watch = new Stopwatch();
+            //watch.Start(); //  开始监视代码运行时间
+
+            //List<UserInfo> list1 = new List<UserInfo>();
+            //List<UserInfo> list2 = new List<UserInfo>();
+            //for (int i = 0; i < 100000; i++)
+            //{
+            //    list1.Add(new UserInfo() { Name = "名称" + i.ToString(), Age = "年龄" + i.ToString(), ThreadId = 123 });
+            //    list2.Add(new UserInfo() { Name = "名称" + i.ToString(), Age = "年龄" + i.ToString(), ThreadId = 123 });
+
+            //}
+            //list2.Insert(3, new UserInfo() { Name = "名称s", Age = "年龄", ThreadId = 123 });
+            //list2.Insert(31, new UserInfo() { Name = "名称d", Age = "年龄", ThreadId = 123 });
+            //list2.Insert(5452, new UserInfo() { Name = "名称ddf", Age = "年龄", ThreadId = 123 });
+
+
+
+            //List<string> list3 = list2.Select(s => s.Name).Except(list1.Select(s => s.Name)).ToList();
+            //List<string> list4 = list2.Select(s => s.Name).Intersect(list1.Select(s => s.Name)).ToList();
+
+            //Console.WriteLine("差异项" + JsonConvert.SerializeObject(list3));
+            ////Console.WriteLine("相同项" + JsonConvert.SerializeObject(list4));
+            //watch.Stop(); //  停止监视
+            //TimeSpan timespan = watch.Elapsed; //获取当前实例测量得出的总时间
+            //Console.WriteLine("时间：" + timespan.TotalSeconds);
+            #endregion
+
+
+            #region 算法
+            //冒泡排序
+            int[] testArray = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11 };
+            //int[] result = GetOrderArray(testArray);
+            //for (int i = 0; i < result.Length; i++)
+            //{
+            //    Console.WriteLine(result[i]);
+            //}
+            //SanJiaoXint();//三角形
+         
+
+            #endregion
             Console.ReadLine();
         }
+
+   
+
+        /// <summary>
+        /// 三角形
+        /// </summary>
+        public static void SanJiaoXint()
+        {
+            int a = 20;
+            int row = 20;
+
+            for (int i = 1; i < row; i++)
+            {
+                for (int j = 1; j < a; j++)
+                {
+
+                    if (j >= a - i)
+                    {
+
+                        Console.Write("*");
+
+                    }
+                    else
+                    {
+                        Console.Write(" ");
+                    }
+                }
+                for (int n = 0; n < (2 * a); n++)
+                {
+                    if (n < i - 1)
+                    {
+                        Console.Write("*");
+                    }
+                    else
+                    {
+                        Console.Write(" ");
+                    }
+
+                    if (n == 2 * a - 1)
+                    {
+                        Console.Write("\n");
+                    }
+                }
+
+            }
+        }
+
+
+        /// <summary>
+        /// 冒泡排序
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static int[] GetOrderArray(int[] param)
+        {
+
+            int temp;
+            for (int i = 0; i < param.Length; i++)
+            {
+                for (int j = 0; j < param.Length - 1 - i; j++)
+                {
+                    if (param[j] > param[j + 1])
+                    {
+                        temp = param[j + 1];
+                        param[j + 1] = param[j];
+                        param[j] = temp;
+                    }
+                }
+            }
+            return param;
+        }
+
+
 
         public static string GetContinueString(string name)
         {

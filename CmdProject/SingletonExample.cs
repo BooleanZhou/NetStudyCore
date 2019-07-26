@@ -33,6 +33,7 @@ namespace CmdProject
         }
         public static T GetSingleton()
         {
+            
             if (instance == null)
             {
                 lock (locker)

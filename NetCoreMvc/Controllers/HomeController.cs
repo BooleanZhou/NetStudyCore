@@ -27,6 +27,21 @@ namespace NetCoreMvc.Controllers
             ViewBag.A = a;
             ViewBag.F = f;
             ViewBag.T = x;
+
+            List<string> list1 = new List<string>();
+            List<string> list2 = new List<string>();
+            for (int i = 0; i < 10000; i++)
+            {
+                list1.Add("a" + i.ToString());
+
+            }
+
+
+            list2.Add("a1");
+            list2.Add("b");
+            list2.Add("d");
+
+            List<string> list3 = list2.Except(list1).ToList();
             return View();
         }
         public IActionResult Index()

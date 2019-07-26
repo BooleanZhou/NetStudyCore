@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace CmdProject
 {
     /* ==============================================================================
-    * 类名称(Class Name)：                       President
+    * 类名称(Class Name)：                       TempTest
     * 
     * 类描述(Description)：
     * 
     * 创建人(Author)：                           星爵
     *
-    * 创建时间（Create Date）：                  2019/7/23 星期二 10:38:25
+    * 创建时间（Create Date）：                  2019/7/24 星期三 17:22:16
     * 
     * 修改记录（Revision History）： 
     *       R1:
@@ -23,24 +23,9 @@ namespace CmdProject
     *           
     * ==============================================================================*/
 
-    public class President : SingletonExample<President>
+    public class TempTest
     {
-        private string name;
-        private string country;
-        public President()
-        {
-            Console.WriteLine("类中的构造函数");
-        }
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
-        public string Country
-        {
-            get { return country; }
-            set { country = value; }
-        }
-        
+        const string a = "A";
+
     }
 }
