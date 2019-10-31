@@ -1,8 +1,12 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading;
@@ -49,29 +53,29 @@ namespace CmdProject
 
 
             #region 线程池
-            //ThreadDemoClass demoClass = new ThreadDemoClass();
-            ////设置当没有请求时线程池维护的空闲线程数
-            ////第一个参数为辅助线程数
-            ////第二个参数为异步 I/O 线程数
-            //ThreadPool.SetMinThreads(5, 5);
+            ThreadDemoClass demoClass = new ThreadDemoClass();
+            //设置当没有请求时线程池维护的空闲线程数
+            //第一个参数为辅助线程数
+            //第二个参数为异步 I/O 线程数
+            ThreadPool.SetMinThreads(5, 5);
 
-            ////设置同时处于活动状态的线程池的线程数，所有大于次数目的请求将保持排队状态，直到线程池变为可用
-            ////第一个参数为辅助线程数
-            ////第二个参数为异步 I/O 线程数
-            //ThreadPool.SetMaxThreads(100, 100);
-            ////使用委托排入队列，在线程池可变为可用时执行(无参数)
-            //WaitCallback waitCallback = new WaitCallback(demoClass.Run);
-            //ThreadPool.QueueUserWorkItem(waitCallback);
-            ////使用委托排入队列，
+            //设置同时处于活动状态的线程池的线程数，所有大于次数目的请求将保持排队状态，直到线程池变为可用
+            //第一个参数为辅助线程数
+            //第二个参数为异步 I/O 线程数
+            ThreadPool.SetMaxThreads(100, 100);
+            //使用委托排入队列，在线程池可变为可用时执行(无参数)
+            WaitCallback waitCallback = new WaitCallback(demoClass.Run);
+            ThreadPool.QueueUserWorkItem(waitCallback);
+            //使用委托排入队列，
 
-            //WaitCallback waitCallback1 = new WaitCallback(demoClass.Run);
-            //ThreadPool.QueueUserWorkItem(waitCallback1, "强");
+            WaitCallback waitCallback1 = new WaitCallback(demoClass.Run);
+            ThreadPool.QueueUserWorkItem(waitCallback1, "强");
 
-            //DelegateParam param = new DelegateParam();
-            //param.name = "Jhon";
-            //param.age = "12";
-            //WaitCallback waitCallback2 = new WaitCallback(demoClass.Run2);
-            //ThreadPool.QueueUserWorkItem(waitCallback2, param);
+            DelegateParam param = new DelegateParam();
+            param.name = "Jhon";
+            param.age = "12";
+            WaitCallback waitCallback2 = new WaitCallback(demoClass.Run2);
+            ThreadPool.QueueUserWorkItem(waitCallback2, param);
 
             //Console.WriteLine();
             //Console.WriteLine("Main thread working...");
@@ -368,21 +372,75 @@ namespace CmdProject
 
             #region 算法
             //冒泡排序
-            int[] testArray = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11 };
+            // int[] testArray = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11 };
             //int[] result = GetOrderArray(testArray);
             //for (int i = 0; i < result.Length; i++)
             //{
             //    Console.WriteLine(result[i]);
             //}
             //SanJiaoXint();//三角形
-         
+
 
             #endregion
+            #region 多维数组
+            // ManyArray();
+            #endregion
+
+            //Console.WriteLine(Parent.Name);
+            //MainRun.TestRun();
+
+            //Console.WriteLine(Parent.Name);
+            //char ch ='';
+            //  Console.WriteLine(Char.IsNumber(ch));
+            //string[] str = new[] { "3D1", "DD2" };
+            string[] codeArray = new string[] { };
+            var data = File.ReadAllLines(Path.Combine(@"D:\生码文件\100603013213_勒芒的企业\勒芒测试2层\20190827\33c5b4b968b0484d9f071cd5903035ad\33c5b4b968b0484d9f071cd5903035ad_20190827_SPRODUCTCODE_1_900000.txt"));
+            var data2 = File.ReadAllLines(Path.Combine(@"D:\生码文件\100603013213_勒芒的企业\勒芒测试2层\20190827\33c5b4b968b0484d9f071cd5903035ad\33c5b4b968b0484d9f071cd5903035ad_20190827_SPRODUCTCODE_2_100050.txt"));
+
+            var dd = codeArray.Concat(data);
+            var ddd = dd.GroupBy(s => s);
+            // Console.WriteLine(101051 % 900000);
+            Console.WriteLine(ddd.Count());
             Console.ReadLine();
         }
 
-   
+        public class Parent
+        {
+            public static string Name { get; } = "我是爸爸";
+        }
+        public class MainRun : Parent
+        {
+            public static string Name = "我是儿子";
+            public static void TestRun()
+            {
+                Name = "我是儿子赋值";
+                Console.WriteLine(Name);
+            }
 
+        }
+        public static void ManyArray()
+        {
+            int[,] towArray = new int[3, 2] {
+                { 1,2},
+                { 3,4},
+                { 5,6}
+            };
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    Console.WriteLine(towArray[i, j]);
+                }
+
+            }
+
+
+        }
+        class user
+        {
+            public string usename { get; set; }
+            public string age { get; set; }
+        }
         /// <summary>
         /// 三角形
         /// </summary>

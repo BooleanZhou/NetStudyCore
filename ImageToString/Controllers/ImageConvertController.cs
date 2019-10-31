@@ -1,9 +1,12 @@
 ﻿using Emgu.CV.OCR;
 using ImageToString.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,21 +15,42 @@ namespace ImageToString.Controllers
 
     public class ImageConvertController : Controller
     {
-        // GET: ImageConvert
-        public ActionResult Index()
+        class UserInfo
         {
+            public string usename { get; set; }
+            public string age { get; set; }
+        }
+        // GET: ImageConvert
+        public async Task<ActionResult> Index()
+        {
+            UserInfo userinfo = new UserInfo();
+            userinfo.usename = "dddd";
+            userinfo.age = "12";
+            string json = JsonConvert.SerializeObject(userinfo);
+            HttpClient client = new HttpClient();
+            HttpContent content = new StringContent(json);
+            try
+            {
+               
+              
+                new HttpClient().DefaultRequestHeaders.Accept.Clear();
+                new HttpClient().DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
-            //Tesseract _ocr = new Tesseract();
-            //_ocr = new Tesseract(@"D:\Emgu\emgucv-windesktop 4.1.0.3420\bin\tessdata", "eng", OcrEngineMode.LstmOnly);//方法第一个参数可为""表示通过环境变量调用字库，第二个参数表示字库的文件，第三个表示识别方式，可看文档与资料查找。
-            //_ocr.SetVariable("tessedit_char_whitelist", "0123456789X");//此方法表示只识别1234567890与x字母
-            //string result = "";
-            //Bitmap bitmap = new Bitmap(Bitmap.FromFile(@"D:\test.bmp"));
-            //bitmap = ImageOpreation.BrightnessP(bitmap, 1);//图片加亮处理
-            //bitmap = ImageOpreation.KiContrast(bitmap, 1);//调整对比对
+                HttpResponseMessage response = await client.PostAsync("http://localhost:8035/api/Index/GetPost", content);
 
-            //result = ImageOpreation.ORC_(bitmap);
-            //ViewBag.Result = result;
-            //_ocr.Dispose();
+                response.EnsureSuccessStatusCode();
+
+                string responseBody = await response.Content.ReadAsStringAsync();
+            }
+            catch (Exception)
+            {
+
+                client.Dispose();
+                content.Dispose();
+            }
+            client.Dispose();
+            content.Dispose();
             return View();
         }
         class Test

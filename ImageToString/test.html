@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="Scripts/jquery-3.3.1.js"></script>
+    <script>
+        $(function () {
+
+
+            //var addUrl = "http://localhost:4823/api/DigitalAnalysis/AddSearchRecord";//
+            var geturl = "http://localhost:4823/api/DigitalAnalysis/GetRecordData";
+            //var geturl = "http://localhost:4823/api/DigitalAnalysis/DeleteRecordById";
+          
+
+            $.ajax({
+                type: "Post",
+                url: geturl,
+                dataType: "json",
+                data: {
+                    OpenId: "123456",
+                    Id: "6f53bd9b71ad450093626dca095fce78",
+                    pageNum: "1",
+                    pageSize:"100"
+                   //Digital: "0102232320323191",
+                    //DelId: ["220f312a92c4424eb3836a354712b203","6f53bd9b71ad450093626dca095fce78"]
+                   
+                },
+                success: function (responseResult) {
+                    console.log("123");
+                    console.log(responseResult);
+                 
+                }
+            });
+
+        })
+    </script>
+</head>
+<body>
+
+</body>
+</html>
